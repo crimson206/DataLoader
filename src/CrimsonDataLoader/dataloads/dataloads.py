@@ -2,8 +2,7 @@ import torch
 import torchvision
 import torchvision.transforms as transforms
 from torch.utils.data import  DataLoader
-from datasets import CelebADataset
-
+from CrimsonDataLoader.dataloads.datasets import CelebADataset
 
 def load_mnist(root="./data", batch_size=64, download=False, resize_to=32, dataset_type='mnist'):
     transform = transforms.Compose([
