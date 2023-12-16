@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="DataLoader",
-    version="0.1.2",
+    version="0.1.3",
     description="Personal DataLoader Module",
     author="Sisung Kim",
     package_dir={"": "src"},
