@@ -1,6 +1,9 @@
 import torch
 import torchvision
 import torchvision.transforms as transforms
+from torch.utils.data import  DataLoader
+from datasets import CelebADataset
+
 
 def load_mnist(root="./data", batch_size=64, download=False, resize_to=32, dataset_type='mnist'):
     transform = transforms.Compose([
@@ -48,3 +51,20 @@ def load_cifar(root="./data", batch_size=64, download=False, num_classes=10):
     testloader = torch.utils.data.DataLoader(testset, batch_size=batch_size, shuffle=False)
     
     return trainset, trainloader, testset, testloader
+
+def load_celeba(img_dir, attr_file, batch_size=64, size_to=64, num_classes=10):
+
+    img_dir = "C:/Users/sisun/VSCode/Data/img_align_celeba"
+    attr_file = "C:/Users/sisun/VSCode/Data/list_attr_celeba.txt"
+
+    transform=transforms.Compose([
+        transforms.Resize(size_to),
+        transforms.CenterCrop(size_to),
+        transforms.ToTensor(),
+        transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5)),
+    ])
+
+    celeba_dataset = CelebADataset(img_dir=img_dir, attr_file=attr_file, transform=transform)
+    dataloader = DataLoader(celeba_dataset, batch_size=32, shuffle=True)
+
+    return celeba_dataset, dataloader
