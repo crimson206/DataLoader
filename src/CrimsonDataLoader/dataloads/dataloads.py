@@ -25,23 +25,6 @@ def load_mnist(root="./data", batch_size=64, download=False, resize_to=32, datas
     
     return trainset, trainloader, testset, testloader
 
-
-def load_mnist(root="./data", batch_size=64, download=False, resize_to=32):
-    transform = transforms.Compose([
-        transforms.Resize((resize_to, resize_to)),
-        transforms.ToTensor(),
-        transforms.Normalize((0.5,), (0.5,)),
-    ])
-
-    # Download and load the training data
-    trainset = torchvision.datasets.MNIST(root, download=download, train=True, transform=transform)
-    trainloader = torch.utils.data.DataLoader(trainset, batch_size=batch_size, shuffle=True)
-
-    testset = torchvision.datasets.MNIST(root, download=download, train=False, transform=transform)
-    testloader = torch.utils.data.DataLoader(testset, batch_size=batch_size, shuffle=False)
-    
-    return trainset, trainloader, testset, testloader
-
 def load_cifar(root="./data", batch_size=64, download=False, num_classes=10):
     transform = transforms.Compose([
         transforms.ToTensor(),
