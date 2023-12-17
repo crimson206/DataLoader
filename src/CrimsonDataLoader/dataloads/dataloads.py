@@ -51,19 +51,19 @@ def load_cifar(root="./data", batch_size=64, download=False, num_classes=10):
     
     return trainset, trainloader, testset, testloader
 
-def load_celeba(img_dir, attr_file, batch_size=64, size_to=64, num_classes=10):
+def load_celeba(img_dir, attr_file, batch_size=64, resize_to=64):
 
     img_dir = "C:/Users/sisun/VSCode/Data/img_align_celeba"
     attr_file = "C:/Users/sisun/VSCode/Data/list_attr_celeba.txt"
 
     transform=transforms.Compose([
-        transforms.Resize(size_to),
-        transforms.CenterCrop(size_to),
+        transforms.Resize(resize_to),
+        transforms.CenterCrop(resize_to),
         transforms.ToTensor(),
         transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5)),
     ])
 
     celeba_dataset = CelebADataset(img_dir=img_dir, attr_file=attr_file, transform=transform)
-    dataloader = DataLoader(celeba_dataset, batch_size=32, shuffle=True)
+    dataloader = DataLoader(celeba_dataset, batch_size=batch_size, shuffle=True)
 
     return celeba_dataset, dataloader
