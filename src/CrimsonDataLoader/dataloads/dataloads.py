@@ -53,9 +53,6 @@ def load_cifar(root="./data", batch_size=64, download=False, num_classes=10):
 
 def load_celeba(img_dir, attr_file, batch_size=64, resize_to=64):
 
-    img_dir = "C:/Users/sisun/VSCode/Data/img_align_celeba"
-    attr_file = "C:/Users/sisun/VSCode/Data/list_attr_celeba.txt"
-
     transform=transforms.Compose([
         transforms.Resize(resize_to),
         transforms.CenterCrop(resize_to),
